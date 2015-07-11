@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+
+  "name": "Readmix",
+  "description": "Make changes to your favorite websites",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "img/icon.png",
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs", 
+    "*://*/*", 
+    "contextMenus"
+  ],
+
+  "background": {"page": "background.html"},
+
+  "web_accessible_resources": [],
+  
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": [
+      ]
+    }
+  ]
+}
