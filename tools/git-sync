@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cur_branch=$(git_current_branch)
+cur_branch=echo "$(git branch | awk '/\*/ { print $2; }')"
 
 git checkout master
 
