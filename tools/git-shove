@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# /usr/local/bin/git-shove
+# example:
+#  git shove "#6: its easier when working alone--or with another very closely--to do smaller, more frequent commits"
+#
+ 
+git add -A &&
+if [ $# -gt 0 ]
+then
+  git commit -a -m "$*"
+else
+  git commit -a -v
+fi &&
+git pull --rebase &&
+git push;
