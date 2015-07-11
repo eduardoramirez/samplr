@@ -11,9 +11,10 @@ git pull origin master
 
 if [ "$?" != 0 ]; then
   git checkout $cur_branch
-  info "> fail"
+  printf "> fail"
+  die 1
 fi
 
 git checkout $cur_branch && git rebase master $cur_branch
 
-success "> Master synced with origin"
+printf "> Master synced with origin"
