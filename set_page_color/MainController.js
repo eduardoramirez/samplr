@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $this = $(this)
       tagName = $(this).get(0).tagName.toLowerCase()
       tagText = $(this).get(0).innerText
-      $("#topTag").text("<"+tagName.toLowerCase()+"style="+element.style+">");
+      $("#topTag").text("<"+tagName.toLowerCase());
       $("#bottomTag").text("</"+tagName.toLowerCase()+">");
       $('#__textyareay__').val(tagText)
     })
