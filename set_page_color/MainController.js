@@ -1,6 +1,7 @@
 var tagName
 var tagText
 var $this
+var description = ""
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
@@ -24,9 +25,10 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $this = $(this)
       tagName = $(this).get(0).tagName.toLowerCase()
       tagText = $(this).get(0).innerText
-      $("#topTag").text("<"+tagName.toLowerCase());
+      $("#topTag").text("<"+tagName.toLowerCase()+">");
       $("#bottomTag").text("</"+tagName.toLowerCase()+">");
       $('#__textyareay__').val(tagText)
+      setDescription()
     })
   }
 })
@@ -40,31 +42,45 @@ function buildSidebar(body) {
   $('#__blueme__').on('click', function () {
     if ($this) {
       $this.css('color', 'blue')
-    } 
+    }
   })
 
   $('#__redme__').on('click', function () {
     if ($this) {
       $this.css('color', 'red')
-    } 
+    }
   })
 
   $('#__yellowme__').on('click', function () {
     if ($this) {
       $this.css('color', 'yellow')
-    } 
+    }
   })
 
   $('#__changeme__').on('click', function () {
     if ($this) {
       $this.text($("#__textyareay__").val());
-    } 
+    }
   })
+}
+
+function setDescription() {
+  switch(tagName) {
+    case 'p':
+      description = "You've just clicked on a <p> tag! The browser uses the <p> tag to define a paragraph."
+      break
+    case 'header':
+      description = "You've just clicked on a <header> tag! This is used to introduce other content onto the page or to hold a set of links to other pages."
+      break
+    case 'h1': case 'h2': case 'h3': case 'h4': case 'h5': case 'h6':
+      description = "You've just clicked on one of the six heading elements. These elements are used for different headers and differ in magnitude of importance, <h1> being the most important and <h6> being the least. "
+    default: description = "this is the description"
+  }
 }
 
 function populateSidebar() {
   var sidebar = '<div class="ui very wide sidebar" id="__teamthebest__">'
-  
+
   var stuff =
     '<div class="ui teal inverted segment">' +
       '<h1 class="ui centered header">Readmix</h1>' +
@@ -81,6 +97,10 @@ function populateSidebar() {
         '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
         '<div class="ui teal button" id="__changeme__">Change Text</div>'+
       '</div>' +
+    '</div>' +
+    '<div>' +
+      '<h1 class="ui center teal header">What am I doing?</h1>' +
+      '<p>'+ description +'</p>' +
     '</div>'
 
   return sidebar + stuff + '</div>'
