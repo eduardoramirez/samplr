@@ -7,6 +7,8 @@
 
 // NEXT STEP: save css changes to images and roll back
 // do I download css file or just take css text?
+// - get most recent changes in css
+// - remember css addition
 
 // how do chrome extensions talk to the html/css of a web page?
 // how do we override native html/css behavior?
@@ -14,13 +16,16 @@
 // - html changes require an identifier of which element changed
 
 var cheerio = require('cheerio');
-var request = require('request');
+var diff = require('diff');
 var firebase = require('firebase');
 var randomId = require('random-id');
+var request = require('request');
 
 // Setting up Firebase database
 var myFirebaseRef = new firebase("https://torrid-inferno-5286.firebaseio.com/");
 
+// Talk to dev console to take states before and after change
+// set new changes in firebase until 'end'
 
 // EXAMPLES OF CHEERIO & REQUEST PACKAGES
 request('http://www.google.com', function (error, response, body) {
