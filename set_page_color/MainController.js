@@ -1,7 +1,7 @@
 var tagName
 var tagText
 var $this
-var description = ""
+var description = "Click on some text on the web page to change it."
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
     setTimeout(function () {
       $('.pusher').removeClass('dimmed')
-    }, 10);
+    }, 1500);
 
 
     $("*", document.body).click(function (e) {
@@ -28,7 +28,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $("#topTag").text("<"+tagName.toLowerCase()+">");
       $("#bottomTag").text("</"+tagName.toLowerCase()+">");
       $('#__textyareay__').val(tagText)
-      setDescription()
+      $('#description-par').text(setDescription())
     })
   }
 })
@@ -67,14 +67,13 @@ function buildSidebar(body) {
 function setDescription() {
   switch(tagName) {
     case 'p':
-      description = "You've just clicked on a <p> tag! The browser uses the <p> tag to define a paragraph."
+      return "You've just clicked on a <p> tag! The browser uses the <p> tag to define a paragraph of text. Type/delete some text in the text area above and see your changes come alive!"
       break
     case 'header':
-      description = "You've just clicked on a <header> tag! This is used to introduce other content onto the page or to hold a set of links to other pages."
+      return "You've just clicked on a <header> tag! This is used to introduce other content onto the page or to hold a set of links to other pages. Type/delete some text in the text area above and see your changes come alive!"
       break
     case 'h1': case 'h2': case 'h3': case 'h4': case 'h5': case 'h6':
-      description = "You've just clicked on one of the six heading elements. These elements are used for different headers and differ in magnitude of importance, <h1> being the most important and <h6> being the least. "
-    default: description = "this is the description"
+      return "You've just clicked on one of the six heading elements. These elements are used for different headers and differ in magnitude of importance, <h1> being the most important and <h6> being the least. Type/delete some text in the text area above and see your changes come alive!"
   }
 }
 
@@ -100,7 +99,7 @@ function populateSidebar() {
     '</div>' +
     '<div>' +
       '<h1 class="ui center teal header">What am I doing?</h1>' +
-      '<p>'+ description +'</p>' +
+      '<div class="ui segment" id="description-par">'+description+'</div>' +
     '</div>'
 
   return sidebar + stuff + '</div>'
