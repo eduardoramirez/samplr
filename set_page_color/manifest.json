@@ -27,7 +27,8 @@
   }],
 
   "browser_action": {
-    "default_title": "Test Extension"
+    "default_title": "Test Extension",
+    "default_icon": "vinyl-record-icon.png"
   },
 
   "web_accessible_resources" : [
