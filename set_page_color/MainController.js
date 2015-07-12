@@ -88,6 +88,12 @@ function populateSidebar() {
   var sidebar = '<div class="ui very wide sidebar" id="__teamthebest__">'
 
   var stuff =
+    '<div>' +
+      '<style>' +
+        '#description-par {font-size: 14px;}' +
+        '#__textyareay__ {font-size: 14px}' +
+      '</style>' +
+    '</div>' +
     '<div class="ui teal inverted segment">' +
       '<h1 class="ui centered header">Readmix</h1>' +
     '</div>' +
