@@ -7,6 +7,11 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
    $('.sidebar').sidebar('toggle');
   }
+$("*", document.body).click(function (e) {
+	e.stopPropagation();
+	var tagName = $(this).get(0).tagName);
+	var tagText = $(this).get(0).innerText);
+	});
 })
 
 function buildSidebar(body) {
@@ -24,3 +29,4 @@ function populateSidebar() {
 
   return sidebar + '</div>'
 }
+
