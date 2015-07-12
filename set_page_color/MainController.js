@@ -19,14 +19,14 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     $("*", document.body).hover(function (e) {
       e.stopPropagation()
 
-      if($(this).attr('class').indexOf('ui') >= 0) return
+      if($(this).attr('class') && $(this).attr('class').indexOf('ui') >= 0) return
 
       $this = $(this)
       tagName = $(this).get(0).tagName.toLowerCase()
       tagText = $(this).get(0).innerText
       //console.log(window.getComputedStyle(this))
       setTimeout(function () { 
-        $('#__textyareay__').val('<'+tagName+'>'+tagText+'</'+ tagName+'>')
+        $('#__textyareay__').val(tagText)
       }, 2000)
     })
   }
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
 function buildSidebar(body) {
   var myDiv = populateSidebar()
-  var newBody = myDiv + '<div class="pusher">' + body.innerHTML + '</div>'
+  var newBody = myDiv + '<div class="ui pusher">' + body.innerHTML + '</div>'
 
   document.body.innerHTML = newBody
 
@@ -75,14 +75,16 @@ function populateSidebar() {
     '</div>' +
     '<div class="ui basic segment">' +
       '<div class="ui form">' +
+        '<h3 id="topTag">'+tagName+'</h3>' +
         '<div class="ui field">' +
           '<h1 class="ui teal header">Enter New Text Below</h1>' +
           '<textarea class="ui" id="__textyareay__"></textarea>' +
         '</div>' +
-        '<div class="ui large blue button" id="__blueme__">Blue</div>'+
-        '<div class="ui large red button" id="__redme__">Red</div>'+
-        '<div class="ui large yellow button" id="__yellowme__">Yellow</div>'+
-        '<div class="ui large teal button" id="__changeme__">Change Text</div>'+
+       '<h3 id="bottomTag">'+tagName+'</h3>'+
+        '<div class="ui blue button" id="__blueme__">Blue</div>'+
+        '<div class="ui red button" id="__redme__">Red</div>'+
+        '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
+        '<div class="ui teal button" id="__changeme__">Change Text</div>'+
       '</div>' +
     '</div>'
 
