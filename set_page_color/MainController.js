@@ -1,27 +1,26 @@
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-  console.log("on message")
 
   if (msg.text && (msg.text == "report_back")) {
-    console.log("reporting back")
-    sendResponse({farewell:document.all[0].outerHTML})
-    console.log("after")
-    var newBody = poop(document.body)
-    document.body.innerHTML = newBody
-    $('.ui.sidebar').sidebar('setting', {
-      transition: 'push',
-      bottom : 'overlay'
-    }).sidebar('toggle')
-  }else {
+    if (!$('#__teamthebest__').length) {
+      buildSidebar(document.body)
+    }
 
-    console.log("hello")
-    sendResponse({farewell:"by"})
-
+   $('.sidebar').sidebar('toggle');
   }
 })
 
-function poop(body) {
-  var myDiv = '<div class="ui sidebar"></div>'
+function buildSidebar(body) {
+  var myDiv = populateSidebar()
   var newBody = myDiv + '<div class="pusher">' + body.innerHTML + '</div>'
 
-  return newBody
+  document.body.innerHTML = newBody
+}
+
+
+function populateSidebar() {
+  var sidebar = '<div class="ui sidebar" id="__teamthebest__">'
+
+  // fill in sidebar html here
+
+  return sidebar + '</div>'
 }
