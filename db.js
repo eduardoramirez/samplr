@@ -20,7 +20,6 @@ var diff = require('diff');
 var firebase = require('firebase');
 var randomId = require('random-id');
 var request = require('request');
-var request = require('request');
 var firebase = require('firebase');
 var randomId = require('random-id');
 
