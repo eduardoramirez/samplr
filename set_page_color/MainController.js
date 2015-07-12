@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }, 10);
 
 
-    $("*", document.body).hover(function (e) {
+    $("*", document.body).click(function (e) {
       e.stopPropagation()
 
       if($(this).attr('class') && $(this).attr('class').indexOf('ui') >= 0) return
@@ -40,21 +40,18 @@ function buildSidebar(body) {
   $('#__blueme__').on('click', function () {
     if ($this) {
       $this.css('color', 'blue')
-      $this.css('background-color', 'blue')
     } 
   })
 
   $('#__redme__').on('click', function () {
     if ($this) {
       $this.css('color', 'red')
-      $this.css('background-color', 'red')
     } 
   })
 
   $('#__yellowme__').on('click', function () {
     if ($this) {
       $this.css('color', 'yellow')
-      $this.css('background-color', 'yellow')
     } 
   })
 
@@ -75,11 +72,10 @@ function populateSidebar() {
     '<div class="ui basic segment">' +
       '<div class="ui form">' +
         '<div class="ui field">' +
-          '<h1 class="ui teal header">Enter New Text Below</h1>' +
-          '<h3 class="ui teal header" id="topTag"><></h3>' +
+          '<h3 class="ui teal header" id="topTag" style="text-align:left">&lt;&gt;</h3>' +
           '<textarea class="ui" id="__textyareay__"></textarea>' +
         '</div>' +
-       '<h3 class="ui teal header" id="bottomTag"></></h3>'+
+       '<h3 class="ui teal header" id="bottomTag" style="text-align:left">&lt;/&gt;</h3>'+
         '<div class="ui blue button" id="__blueme__">Blue</div>'+
         '<div class="ui red button" id="__redme__">Red</div>'+
         '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
