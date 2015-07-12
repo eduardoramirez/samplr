@@ -1,61 +1,90 @@
 var tagName
 var tagText
-var element
+var $this
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
   if (msg.text && (msg.text == "report_back")) {
     if (!$('#__teamthebest__').length) {
-      console.log(">>>")
       buildSidebar(document.body)
     }
-    $('#__teamthebest__').sidebar('toggle');
+
+    $('#__teamthebest__').sidebar('toggle')
 
     setTimeout(function () {
       $('.pusher').removeClass('dimmed')
     }, 10);
 
-	$("*", document.body).click(function (e) {
-		e.stopPropagation();
-		tagName = $(this).get(0).tagName;
-		tagText = $(this).get(0).innerText;
-		element = $(this);
-		$("#textField").attr("placeholder", tagText)
-		$("#topTag").text("<"+tagName.toLowerCase()+">");
-		$("#bottomTag").text("</"+tagName.toLowerCase()+">");
-		console.log('<'+tagName.toLowerCase()+'>'+tagText+'<'+tagName.toLowerCase()+'/>');
-	});
-	$("#submitButton").click(function(){
-		updateText();
-	})
-  }
-});
 
+    $("*", document.body).hover(function (e) {
+      e.stopPropagation()
+
+      if($(this).attr('class').indexOf('ui') >= 0) return
+
+      $this = $(this)
+      tagName = $(this).get(0).tagName.toLowerCase()
+      tagText = $(this).get(0).innerText
+      //console.log(window.getComputedStyle(this))
+      setTimeout(function () { 
+        $('#__textyareay__').val('<'+tagName+'>'+tagText+'</'+ tagName+'>')
+      }, 2000)
+    })
+  }
+})
 
 function buildSidebar(body) {
   var myDiv = populateSidebar()
   var newBody = myDiv + '<div class="pusher">' + body.innerHTML + '</div>'
 
   document.body.innerHTML = newBody
+
+  $('#__blueme__').on('click', function () {
+    if ($this) {
+      $this.css('color', 'blue')
+      $this.css('background-color', 'blue')
+    } 
+  })
+
+  $('#__redme__').on('click', function () {
+    if ($this) {
+      $this.css('color', 'red')
+      $this.css('background-color', 'red')
+    } 
+  })
+
+  $('#__yellowme__').on('click', function () {
+    if ($this) {
+      $this.css('color', 'yellow')
+      $this.css('background-color', 'yellow')
+    } 
+  })
+
+  $('#__changeme__').on('click', function () {
+    if ($this) {
+      $this.text($("#__textyareay__").val());
+    } 
+  })
 }
 
 function populateSidebar() {
-  var sidebar = '<div class="ui sidebar" id="__teamthebest__">'
+  var sidebar = '<div class="ui very wide sidebar" id="__teamthebest__">'
   
   var stuff =
-    '<h1 class="ui header">Readmix</h1>' +
-      '<form class="ui form">'+
-      	'<h3 id="topTag">'+tagName+'</h3>' +
-        '<div class="field">' +
-          '<input id="textField" type="text" name="new-text" placeholder='+ tagName + '>' +
+    '<div class="ui teal inverted segment">' +
+      '<h1 class="ui centered header">Readmix</h1>' +
+    '</div>' +
+    '<div class="ui basic segment">' +
+      '<div class="ui form">' +
+        '<div class="ui field">' +
+          '<h1 class="ui teal header">Enter New Text Below</h1>' +
+          '<textarea class="ui" id="__textyareay__"></textarea>' +
         '</div>' +
-        '<h3 id="bottomTag">'+tagName+'</h3>'+
-        '<div id="submitButton" class="ui inverted blue button">Submit</div>'+
-      '</form>'
+        '<div class="ui large blue button" id="__blueme__">Blue</div>'+
+        '<div class="ui large red button" id="__redme__">Red</div>'+
+        '<div class="ui large yellow button" id="__yellowme__">Yellow</div>'+
+        '<div class="ui large teal button" id="__changeme__">Change Text</div>'+
+      '</div>' +
+    '</div>'
 
   return sidebar + stuff + '</div>'
-}
-
-function updateText(){
-	element.text($("#textField").val());
 }
