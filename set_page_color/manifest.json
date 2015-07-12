@@ -17,12 +17,10 @@
     "js": [
       "MainController.js",
       "js/jquery-2.1.4.min.js",
-      "semantic/semantic.min.js",
-      "semantic/components/sidebar.min.js"
+      "semantic/semantic.js"
     ],
     "css": [
-      "semantic/semantic.min.css",
-      "semantic/components/sidebar.min.css"
+      "semantic/semantic.min.css"
     ]
   }],
 
@@ -31,7 +29,7 @@
   },
 
   "web_accessible_resources" : [
-    "semantic/*",
+    "semantic/*.js",
     "js/jquery-2.1.4.min.js"
   ]
 }
