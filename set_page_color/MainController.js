@@ -58,6 +58,4 @@ function populateSidebar() {
 
 function updateText(){
 	element.text($("#textField").val());
-	// console.log("Element: " + $('div:contains('+tagText+')').text());
-	// $('div:contains('+tagText+')').text($("#textField").attr("placeholder"));
 }
