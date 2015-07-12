@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }, 10);
 
 
-    $("*", document.body).hover(function (e) {
+    $("*", document.body).click(function (e) {
       e.stopPropagation()
 
       if($(this).attr('class') && $(this).attr('class').indexOf('ui') >= 0) return
