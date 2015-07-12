@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $this = $(this)
       tagName = $(this).get(0).tagName.toLowerCase()
       tagText = $(this).get(0).innerText
-      $("#topTag").text("<"+tagName.toLowerCase()+">");
+      $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
       $("#bottomTag").text("</"+tagName.toLowerCase()+">");
       $('#__textyareay__').val(tagText)
       $('#description-par').text(setDescription())
@@ -42,25 +42,29 @@ function buildSidebar(body) {
   $('#__blueme__').on('click', function () {
     if ($this) {
       $this.css('color', 'blue')
-    }
+      $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
+    } 
   })
 
   $('#__redme__').on('click', function () {
     if ($this) {
       $this.css('color', 'red')
-    }
+      $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
+    } 
   })
 
   $('#__yellowme__').on('click', function () {
     if ($this) {
       $this.css('color', 'yellow')
-    }
+      $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
+    } 
   })
 
   $('#__changeme__').on('click', function () {
     if ($this) {
       $this.text($("#__textyareay__").val());
-    }
+      $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
+    } 
   })
 }
 
