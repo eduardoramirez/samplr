@@ -90,7 +90,7 @@ function populateSidebar() {
   var stuff =
     '<div>' +
       '<style>' +
-        '#description-par {font-size: 14px;}' +
+        '#description-par {font-size: 14px; margin-left: 11px; margin-right:11px;}' +
         '#__textyareay__ {font-size: 14px}' +
       '</style>' +
     '</div>' +
