@@ -1,0 +1,37 @@
+{
+  "name": "A browser action with a popup that changes the page color",
+  "description": "Change the current page color",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*", "activeTab"
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": ["popup.js"]
+  },
+
+
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": [
+      "MainController.js",
+      "js/jquery-2.1.4.min.js",
+      "semantic/semantic.min.js",
+      "semantic/components/sidebar.min.js"
+    ],
+    "css": [
+      "semantic/semantic.min.css",
+      "semantic/components/sidebar.min.css"
+    ]
+  }],
+
+  "browser_action": {
+    "default_title": "Test Extension"
+  },
+
+  "web_accessible_resources" : [
+    "semantic/*",
+    "js/jquery-2.1.4.min.js"
+  ]
+}
