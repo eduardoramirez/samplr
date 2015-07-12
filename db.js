@@ -20,6 +20,9 @@ var diff = require('diff');
 var firebase = require('firebase');
 var randomId = require('random-id');
 var request = require('request');
+var request = require('request');
+var firebase = require('firebase');
+var randomId = require('random-id');
 
 // Setting up Firebase database
 var myFirebaseRef = new firebase("https://torrid-inferno-5286.firebaseio.com/");
