@@ -43,28 +43,28 @@ function buildSidebar(body) {
     if ($this) {
       $this.css('color', 'blue')
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
-    } 
+    }
   })
 
   $('#__redme__').on('click', function () {
     if ($this) {
       $this.css('color', 'red')
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
-    } 
+    }
   })
 
   $('#__yellowme__').on('click', function () {
     if ($this) {
       $this.css('color', 'yellow')
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
-    } 
+    }
   })
 
   $('#__changeme__').on('click', function () {
     if ($this) {
       $this.text($("#__textyareay__").val());
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
-    } 
+    }
   })
 }
 
@@ -77,7 +77,10 @@ function setDescription() {
       return "You've just clicked on a <header> tag! This is used to introduce other content onto the page or to hold a set of links to other pages. Type/delete some text in the text area above and see your changes come alive!"
       break
     case 'h1': case 'h2': case 'h3': case 'h4': case 'h5': case 'h6':
-      return "You've just clicked on one of the six heading elements. These elements are used for different headers and differ in magnitude of importance, <h1> being the most important and <h6> being the least. Type/delete some text in the text area above and see your changes come alive!"
+      return "You've just clicked on one of the six heading elements! These elements are used for different headers and differ in magnitude of importance, <h1> being the most important and <h6> being the least. Type/delete some text in the text area above and see your changes come alive!"
+      break
+    case 'div':
+      return "You've just clicked on a <div> tag! This is used to divide or get a section of the web page. You can then add content inside this tag, whether that's text, headers, images, tables, etc."
   }
 }
 
