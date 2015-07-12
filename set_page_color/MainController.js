@@ -25,6 +25,9 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 		$("#bottomTag").text("</"+tagName.toLowerCase()+">");
 		console.log('<'+tagName.toLowerCase()+'>'+tagText+'<'+tagName.toLowerCase()+'/>');
 	});
+	$("#submitButton").click(function(){
+		updateText();
+	})
   }
 });
 
@@ -47,8 +50,14 @@ function populateSidebar() {
           '<input id="textField" type="text" name="new-text" placeholder='+ tagName + '>' +
         '</div>' +
         '<h3 id="bottomTag">'+tagName+'</h3>'+
-        '<div class="ui inverted blue button">Submit</div>'+
+        '<div id="submitButton" class="ui inverted blue button">Submit</div>'+
       '</form>'
 
   return sidebar + stuff + '</div>'
+}
+
+function updateText(){
+	element.text($("#textField").val());
+	// console.log("Element: " + $('div:contains('+tagText+')').text());
+	// $('div:contains('+tagText+')').text($("#textField").attr("placeholder"));
 }
