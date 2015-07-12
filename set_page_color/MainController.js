@@ -24,10 +24,9 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $this = $(this)
       tagName = $(this).get(0).tagName.toLowerCase()
       tagText = $(this).get(0).innerText
-      //console.log(window.getComputedStyle(this))
-      setTimeout(function () { 
-        $('#__textyareay__').val(tagText)
-      }, 2000)
+      $("#topTag").text("<"+tagName.toLowerCase()+">");
+      $("#bottomTag").text("</"+tagName.toLowerCase()+">");
+      $('#__textyareay__').val(tagText)
     })
   }
 })
@@ -75,12 +74,12 @@ function populateSidebar() {
     '</div>' +
     '<div class="ui basic segment">' +
       '<div class="ui form">' +
-        '<h3 id="topTag">'+tagName+'</h3>' +
         '<div class="ui field">' +
           '<h1 class="ui teal header">Enter New Text Below</h1>' +
+          '<h3 class="ui teal header" id="topTag"><></h3>' +
           '<textarea class="ui" id="__textyareay__"></textarea>' +
         '</div>' +
-       '<h3 id="bottomTag">'+tagName+'</h3>'+
+       '<h3 class="ui teal header" id="bottomTag"></></h3>'+
         '<div class="ui blue button" id="__blueme__">Blue</div>'+
         '<div class="ui red button" id="__redme__">Red</div>'+
         '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
