@@ -3,7 +3,7 @@
   "description": "Change the current page color",
   "version": "1.0",
   "manifest_version": 2,
-  // "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
 
   "permissions": [
     "tabs", "http://*/*", "https://*/*", "activeTab"
@@ -20,7 +20,8 @@
     "js": [
       "MainController.js",
       "js/jquery-2.1.4.min.js",
-      "semantic/semantic.js"
+      "semantic/semantic.js",
+      "bower_components/firebase/firebase.js"
     ],
     "css": [
       "semantic/semantic.min.css"
@@ -28,8 +29,9 @@
   }],
 
   "browser_action": {
-    "default_title": "Test Extension",
+    "default_title": "ReadMix",
     "default_icon": "vinyl-record-icon.png"
+    // "default_popup": "popup.html"
   },
 
   "web_accessible_resources" : [

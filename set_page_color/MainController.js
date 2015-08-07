@@ -2,6 +2,9 @@ var tagName
 var tagText
 var $this
 var description = "Click on some text on the web page to change it."
+var header = "ReadMix";
+var readMixDB;
+// Firebase.enableLogging(true);
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 
@@ -31,8 +34,9 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $('#description-par').text(setDescription())
     })
 
-    // var readMixDB = new Firebase('https://resplendent-inferno-2685.firebaseio.com/readMix');
-    // readMixDB.push({'pageHTML': document.body.innerHTML})
+    readMixDB = new Firebase('https://resplendent-inferno-2685.firebaseio.com/readMix');
+
+    
 
   }
 })
@@ -71,11 +75,32 @@ function buildSidebar(body) {
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
     }
   })
-  // $('#__saveme__"').on('click', function () {
-  // 	if ($this){
-
-  // 	}
-  // }
+  $('#__saveme__').on('click', function () {
+  	if ($this){
+  		var id = document.body.innerHTML.length.toString();
+  		var entryPath = new Firebase('http://resplendent-inferno-2685.firebaseio.com/readMix/' + id.toString())
+  		entryPath.set({content: document.body.innerHTML, website: window.location.href});
+  		// readMixDB.push(entry);
+  		$('#readMixHeader').text(header + " (" + id +")");
+  		alert("Your changes have been saved. You can share them or access them again using edit code: " + id.toString());
+  		
+  	}
+  })
+  $('#__loadme__').on('click', function(){
+  	if($this){
+  		var id = $("#loadingIDNumber").val();
+  		var query = new Firebase('http://resplendent-inferno-2685.firebaseio.com/readMix/' + id.toString());
+  		readMixDB.on('value', function(snapshot){
+  			if(snapshot.val()[id]["website"] === window.location.href){
+  				document.body.innerHTML = snapshot.val()[id]["content"];
+  				
+  			}
+  			else{
+  				alert("Sorry that edit code is not for this website");
+  			}	
+  		})
+  	}
+  })
 }
 
 function setDescription() {
@@ -105,7 +130,11 @@ function populateSidebar() {
       '</style>' +
     '</div>' +
     '<div class="ui teal inverted segment">' +
-      '<h1 class="ui centered header">Readmix</h1>' +
+      '<h1 class="ui centered header" id = "readMixHeader">'+header+'</h1>' +
+      '<div class="ui input">'+
+      	'<input type="text" id="loadingIDNumber" placeholder="Enter an edit code . . . ">'+
+      	'<button class="ui button" id="__loadme__">Load edits</button>'+
+      '</div>'+
     '</div>' +
     '<div class="ui basic segment">' +
       '<div class="ui form">' +
@@ -117,12 +146,14 @@ function populateSidebar() {
         '<div class="ui blue button" id="__blueme__">Blue</div>'+
         '<div class="ui red button" id="__redme__">Red</div>'+
         '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
-        '<div class="ui teal button" id="__changeme__">Change Text</div>'+
-        '<div class="ui black button" id="__saveme__"Save! </div>'+
+        '<div class="ui teal button" id="__changeme__">Apply Edits</div>'+
+        '<br>'+
+        '<br>'+
+        '<div class="fluid ui green button" id="__saveme__">Save Changes</div>'+
       '</div>' +
     '</div>' +
     '<div>' +
-      '<h1 class="ui center teal header">What am I doing?</h1>' +
+      '<h1 class="ui centered teal header">What am I doing?</h1>' +
       '<div class="ui segment" id="description-par">'+description+'</div>' +
     '</div>'
 
