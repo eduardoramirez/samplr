@@ -30,8 +30,13 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       $('#__textyareay__').val(tagText)
       $('#description-par').text(setDescription())
     })
+
+    // var readMixDB = new Firebase('https://resplendent-inferno-2685.firebaseio.com/readMix');
+    // readMixDB.push({'pageHTML': document.body.innerHTML})
+
   }
 })
+
 
 function buildSidebar(body) {
   var myDiv = populateSidebar()
@@ -66,6 +71,11 @@ function buildSidebar(body) {
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
     } 
   })
+  $('#__saveme__"').on('click', function () {
+  	if ($this){
+
+  	}
+  }
 }
 
 function setDescription() {
@@ -99,6 +109,7 @@ function populateSidebar() {
         '<div class="ui red button" id="__redme__">Red</div>'+
         '<div class="ui yellow button" id="__yellowme__">Yellow</div>'+
         '<div class="ui teal button" id="__changeme__">Change Text</div>'+
+        '<div class="ui black button" id="__saveme__"Save! </div>'+
       '</div>' +
     '</div>' +
     '<div>' +

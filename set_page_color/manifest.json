@@ -3,6 +3,8 @@
   "description": "Change the current page color",
   "version": "1.0",
   "manifest_version": 2,
+  // "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
+
   "permissions": [
     "tabs", "http://*/*", "https://*/*", "activeTab"
   ],
@@ -10,6 +12,7 @@
     "persistent": false,
     "scripts": ["popup.js"]
   },
+
 
 
   "content_scripts": [{
@@ -34,3 +37,5 @@
     "js/jquery-2.1.4.min.js"
   ]
 }
+
+
