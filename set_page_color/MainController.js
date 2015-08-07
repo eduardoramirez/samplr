@@ -71,11 +71,11 @@ function buildSidebar(body) {
       $("#topTag").text("<"+tagName.toLowerCase()+" style=" + $this.css("color")+">");
     }
   })
-  $('#__saveme__"').on('click', function () {
-  	if ($this){
+  // $('#__saveme__"').on('click', function () {
+  // 	if ($this){
 
-  	}
-  }
+  // 	}
+  // }
 }
 
 function setDescription() {
