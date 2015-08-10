@@ -87,19 +87,16 @@ function buildSidebar(body) {
   	}
   })
   $('#__loadme__').on('click', function(){
-  	if($this){
   		var id = $("#loadingIDNumber").val();
   		var query = new Firebase('http://resplendent-inferno-2685.firebaseio.com/readMix/' + id.toString());
   		readMixDB.on('value', function(snapshot){
   			if(snapshot.val()[id]["website"] === window.location.href){
   				document.body.innerHTML = snapshot.val()[id]["content"];
-  				
   			}
   			else{
   				alert("Sorry that edit code is not for this website");
   			}	
   		})
-  	}
   })
 }
 
@@ -132,7 +129,7 @@ function populateSidebar() {
     '<div class="ui teal inverted segment">' +
       '<h1 class="ui centered header" id = "readMixHeader">'+header+'</h1>' +
       '<div class="ui input">'+
-      	'<input type="text" id="loadingIDNumber" placeholder="Enter an edit code . . . ">'+
+      	'<input type="text" class="ui" id="loadingIDNumber" placeholder="Enter an edit code . . . ">'+
       	'<button class="ui button" id="__loadme__">Load edits</button>'+
       '</div>'+
     '</div>' +
